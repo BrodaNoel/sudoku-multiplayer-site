@@ -5,7 +5,19 @@ class Home extends Component {
   render() {
     return (
       <div className="Home">
-        Home!!!
+        <div className="boxesContainer">
+          <div className="alone">ALONE</div>
+          <div className="1vs1">1 vs 1</div>
+          <div className="playInTeam">Play in Team</div>
+          <div className="teamsVsTeams">Teams vs Teams</div>
+          <div className="deathMatch">DeathMatch</div>
+          <div className="others">
+            <div className="stats">STATS</div>
+            <div className="config">CONFIG</div>
+            <div className="help">HELP</div>
+            <div className="logout">Logout</div>
+          </div>
+        </div>
       </div>
     );
   }
