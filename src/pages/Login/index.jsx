@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import actions from 'actions';
 import * as firebase from 'firebase';
 import './styles.css';
 
@@ -15,11 +16,11 @@ class Login extends Component {
         this.setState({ buttonLabel: 'Redirecting...' });
 
         result.user.getIdToken().then(token => {
-          window.user = {
+          actions.login.login({
             data: result.user,
             credentials: result.credential,
             firebaseToken: token
-          };
+          });
 
           setTimeout(() => {
             this.props.history.push(`/`);
