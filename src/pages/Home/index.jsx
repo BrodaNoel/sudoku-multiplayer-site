@@ -13,7 +13,7 @@ class Home extends Component {
           <div className="teamsVsTeams">Teams vs Teams</div>
           <div className="deathMatch">DeathMatch</div>
           {
-            false ?
+            window.user.firebaseToken ?
               <div className="others">
                 <div className="stats fa fa-bar-chart"></div>
                 <div className="config fa fa-cog"></div>
