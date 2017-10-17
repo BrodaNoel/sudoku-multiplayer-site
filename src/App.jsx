@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import * as firebase from 'firebase';
+import utils from 'utils';
 import Home from 'pages/Home';
 import Login from 'pages/Login';
 import LoginDenied from 'pages/LoginDenied';
@@ -10,7 +11,7 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    window.user = {};
+    window.user = utils.storage.local.get('user') || {};
 
     firebase.initializeApp({
       apiKey: "AIzaSyCTPQH9G9B7UBz1asD9_r_hZE5xY1NVLpQ",
