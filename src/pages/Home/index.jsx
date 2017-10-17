@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './styles.css';
 
 class Home extends Component {
@@ -11,12 +12,19 @@ class Home extends Component {
           <div className="playInTeam">Play in Team</div>
           <div className="teamsVsTeams">Teams vs Teams</div>
           <div className="deathMatch">DeathMatch</div>
-          <div className="others">
-            <div className="stats">STATS</div>
-            <div className="config">CONFIG</div>
-            <div className="help">HELP</div>
-            <div className="logout">Logout</div>
-          </div>
+          {
+            false ?
+              <div className="others">
+                <div className="stats fa fa-bar-chart"></div>
+                <div className="config fa fa-cog"></div>
+                <div className="help fa fa-question"></div>
+                <div className="logout fa fa-power-off"></div>
+              </div>
+            :
+              <Link to={`/login`}>
+                <div className="login">Login</div>
+              </Link>
+          }
         </div>
       </div>
     );
