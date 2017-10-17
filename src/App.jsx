@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import * as firebase from 'firebase';
 import Home from 'pages/Home';
 import Login from 'pages/Login';
+import LoginDenied from 'pages/LoginDenied';
 import './App.css';
 
 class App extends Component {
@@ -26,6 +27,8 @@ class App extends Component {
       <div className="App">
         <Switch>
           <Route exact path='/' component={ Home } />
+
+          <Route path='/login/denied' component={ LoginDenied } />
           <Route path='/login' component={ Login } />
         </Switch>
       </div>
