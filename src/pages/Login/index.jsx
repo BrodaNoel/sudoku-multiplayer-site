@@ -10,20 +10,24 @@ class Login extends Component {
   loginWithFacebook = () => {
     const provider = new firebase.auth.FacebookAuthProvider();
 
-    firebase.auth().signInWithPopup(provider).then(result => {
-      this.setState({ buttonLabel: 'Redirecting...' });
+    firebase.auth().signInWithPopup(provider)
+      .then(result => {
+        this.setState({ buttonLabel: 'Redirecting...' });
 
-      result.user.getIdToken().then(token => {
-        window.user = {
-          data: result.user,
-          credentials: result.credential,
-          firebaseToken: token
-        };
+        result.user.getIdToken().then(token => {
+          window.user = {
+            data: result.user,
+            credentials: result.credential,
+            firebaseToken: token
+          };
 
-        setTimeout(() => {
-          this.props.history.push(`/`);
-        }, 1000);
-      });
+          setTimeout(() => {
+            this.props.history.push(`/`);
+          }, 1000);
+        });
+      })
+    .catch(() => {
+      this.props.history.push(`/login/denied`);
     });
   }
 
