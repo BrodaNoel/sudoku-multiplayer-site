@@ -1,6 +1,4 @@
 .Home {
-  color: #FFF;
-
   .joinContainer {
     width: 100%;
     height: 5vh;
@@ -13,20 +11,22 @@
 
     * {
       text-align: center;
+      line-height: calc(100vh / 3);
+      cursor: pointer;
     }
 
     > * {
       height: calc(100% / 3);
       width: 50%;
-      background-color: grey;
       float: left;
+      line-height: calc(100vh / 3);
     }
 
     .alone {
       background-color: #283646;
     }
 
-    .1vs1 {
+    .oneVsOne {
       background-color: #823CA3;
     }
 
@@ -47,18 +47,20 @@
         height: 50%;
         width: 50%;
         float: left;
+        line-height: calc(100vh / 6);
+        font-size: 7vh;
       }
 
       .stats {
-        background-color: #333;
+        background-color: #666;
       }
 
       .config {
-        background-color: #222;
+        background-color: #444;
       }
 
       .help {
-        background-color: #111;
+        background-color: #222;
       }
 
       .logout {

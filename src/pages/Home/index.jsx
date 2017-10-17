@@ -6,8 +6,8 @@ class Home extends Component {
     return (
       <div className="Home">
         <div className="boxesContainer">
-          <div className="alone">ALONE</div>
-          <div className="1vs1">1 vs 1</div>
+          <div className="alone">Alone</div>
+          <div className="oneVsOne">1 vs 1</div>
           <div className="playInTeam">Play in Team</div>
           <div className="teamsVsTeams">Teams vs Teams</div>
           <div className="deathMatch">DeathMatch</div>
