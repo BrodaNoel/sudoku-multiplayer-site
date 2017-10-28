@@ -13,8 +13,6 @@ class Login extends Component {
 
     firebase.auth().signInWithPopup(provider)
       .then(result => {
-        this.setState({ buttonLabel: 'Redirecting...' });
-
         result.user.getIdToken().then(token => {
           actions.login.login({
             data: result.user,
@@ -22,9 +20,7 @@ class Login extends Component {
             firebaseToken: token
           });
 
-          setTimeout(() => {
-            this.props.history.push(`/`);
-          }, 1000);
+          this.props.history.push(`/`);
         });
       })
     .catch(() => {
@@ -35,7 +31,7 @@ class Login extends Component {
   render() {
     return (
       <div className="Login">
-        <button onClick={this.loginWithFacebook}>{this.state.buttonLabel}</button>
+        <div className="facebook" onClick={this.loginWithFacebook}>{this.state.buttonLabel}</div>
       </div>
     );
   }
