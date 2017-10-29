@@ -1,0 +1,45 @@
+.Level {
+  text-align: center;
+
+  > div {
+    line-height: calc(100vh / 9);
+    color: #000;
+    cursor: pointer;
+  }
+
+  .se {
+    background-color: #38FFB7;
+  }
+
+  .ve {
+    background-color: #84FF65;
+  }
+
+  .e {
+    background-color: #C9FF2B;
+  }
+
+  .m {
+    background-color: #FFDA06;
+  }
+
+  .h {
+    background-color: #FF9405;
+  }
+
+  .hh {
+    background-color: #FF4604;
+  }
+
+  .vh {
+    background-color: #FF0F04;
+  }
+
+  .sh {
+    background-color: #B70003;
+  }
+
+  .i {
+    background-color: #750002;
+  }
+}
