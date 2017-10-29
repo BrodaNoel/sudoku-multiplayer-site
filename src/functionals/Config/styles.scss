@@ -1,0 +1,11 @@
+.Config {
+  text-align: left;
+
+  input {
+    margin-left: 10px;
+  }
+
+  > div {
+    line-height: calc(100vh / 6);
+  }
+}
