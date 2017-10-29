@@ -19,3 +19,14 @@ body {
   width: 100vh / 3 * 2;
   margin: 0 auto;
 }
+
+.button {
+  display: block;
+  cursor: pointer;
+  text-align: center;
+  background-color: #111;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
