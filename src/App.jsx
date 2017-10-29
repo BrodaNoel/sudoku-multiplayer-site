@@ -4,6 +4,7 @@ import * as firebase from 'firebase';
 import utils from 'utils';
 import Home from 'pages/Home';
 import Login from 'pages/Login';
+import Create from 'pages/Create';
 import LoginDenied from 'pages/LoginDenied';
 import './App.css';
 
@@ -31,6 +32,7 @@ class App extends Component {
 
           <Route path='/login/denied' component={ LoginDenied } />
           <Route path='/login' component={ Login } />
+          <Route path='/create/:type?' component={ Create } />
         </Switch>
       </div>
     );
