@@ -5,6 +5,7 @@ import utils from 'utils';
 import Home from 'pages/Home';
 import Login from 'pages/Login';
 import Create from 'pages/Create';
+import Play from 'pages/Play';
 import LoginDenied from 'pages/LoginDenied';
 import './App.css';
 
@@ -33,6 +34,7 @@ class App extends Component {
           <Route path='/login/denied' component={ LoginDenied } />
           <Route path='/login' component={ Login } />
           <Route path='/create/:type?' component={ Create } />
+          <Route path='/play/:id' component={ Play } />
         </Switch>
       </div>
     );
