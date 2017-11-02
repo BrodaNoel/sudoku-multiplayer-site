@@ -3,11 +3,12 @@
 .Sudoku {
   height: 100%;
 
-  input {
+  > * {
     display: block;
     float: left;
     width: calc(#{$contentWidth} / 9);
     height: calc(#{$contentWidth} / 9);
+    line-height: calc(#{$contentWidth} / 9);
     padding: 0;
     margin: 0;
     color: #FFF;
@@ -17,9 +18,15 @@
     border: none;
     border-left: 1px solid #FFF;
     border-top: 1px solid #FFF;
+    cursor: default;
+
+    &.focus {
+      box-shadow: 0 0 3px 1px #FFF;
+      background-color: #333;
+    }
 
     &.init {
-      background-color: #222;
+      background-color: #111;
     }
 
     // Basic lines
