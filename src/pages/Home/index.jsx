@@ -24,7 +24,7 @@ class Home extends Component {
     return (
       <div className="Home">
         <div className="boxesContainer">
-          <div className="alone">Alone</div>
+          <Link to={`/create/alone`}><div className="alone">Alone</div></Link>
           <div className="oneVsOne">1 vs 1</div>
           <div className="playInTeam">Play in Team</div>
           <div className="teamsVsTeams">Teams vs Teams</div>
