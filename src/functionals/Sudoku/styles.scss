@@ -18,6 +18,10 @@
     border-left: 1px solid #FFF;
     border-top: 1px solid #FFF;
 
+    &.init {
+      background-color: #222;
+    }
+
     // Basic lines
     &:nth-child(9n) {
       border-right: 1px solid #FFF;

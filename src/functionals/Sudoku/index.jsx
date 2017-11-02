@@ -17,11 +17,30 @@ class Sudoku extends Component {
   }
 
   onChange = (i, event) => {
-    const number = event.target.value;
+    const value = event.target.value;
+    const number = parseInt(value, 10);
+    let newValue = '';
+
+    if (number > 0 && number < 10) {
+      newValue = number;
+    }
+
+    const newDone = Object.assign(
+      {},
+      this.state.done,
+      { [i]: newValue }
+    );
+
+    this.setState({ done: newDone });
   }
 
   onKeyPress = event => {
-    console.log(event);
+    // TODO: Implement this UX improvement
+    // event.keyCode
+    // left: 37
+    // up: 38
+    // right: 39
+    // down: 40
   }
 
   render() {
@@ -32,9 +51,11 @@ class Sudoku extends Component {
             <input
               key={i}
               type="text"
+              className={ this.state.init[i] ? 'init' : '' }
+              disabled={this.state.init[i]}
               onChange={event => this.onChange(i, event)}
-              onKeyPress={this.onKeyPress}
-              defaultValue={this.state.init[i] || this.state.done[i] || null} />
+              onKeyDown={this.onKeyPress}
+              value={this.state.init[i] || this.state.done[i] || ''} />
           )
         }
       </div>
