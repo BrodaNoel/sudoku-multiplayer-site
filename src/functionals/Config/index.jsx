@@ -26,6 +26,10 @@ class Config extends Component {
           <input type="checkbox" disabled="disabled" /> Auto remove pencil notes
         </div>
 
+        <div>
+          <input type="checkbox" disabled="disabled" /> Show timer
+        </div>
+
         <div
           className="button"
           onClick={() => this.props.onSelect({ someConfig: true }) }>Save Config</div>
