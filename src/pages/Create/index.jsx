@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import Level from 'functionals/Level';
+import actions from 'actions';
 import Config from 'functionals/Config';
 import GetReady from 'functionals/GetReady';
 import './styles.css';
 
 class Create extends Component {
   state = {
-    id: 'xxxxxxxxxx',
     type: null,
     level: null,
     config: null,
@@ -17,6 +17,7 @@ class Create extends Component {
 
   constructor(props) {
     super(props);
+
     const gameTypes = {
       'alone': {},
     };
@@ -34,14 +35,24 @@ class Create extends Component {
   }
 
   onSelectConfig = config => {
-    let nowShow;
     if (this.state.type === 'alone') {
-      nowShow = 'getready';
+      const game = {
+        type: this.state.type,
+        level: this.state.level,
+        config: this.state.config,
+        teams: this.state.teams
+      };
+
+      actions.game.create(game).then((gameCreated) => {
+        this.props.history.push(`/join/${gameCreated.id}`);
+      });
+
+      return;
     }
 
     this.setState({
       config,
-      nowShow
+      nowShow: 'createTeams'
     });
   }
 
@@ -50,7 +61,7 @@ class Create extends Component {
       <div className="Create">
         { this.state.nowShow === 'level' ? <Level onSelect={ this.onSelectLevel } /> : null }
         { this.state.nowShow === 'config' ? <Config onSelect={ this.onSelectConfig } /> : null }
-        { this.state.nowShow === 'getready' ? <GetReady gameId={this.state.id} /> : null }
+        { this.state.nowShow === 'createTeams' ? null : null }
       </div>
     );
   }
