@@ -1,7 +1,7 @@
+import api from 'api';
+
 export default {
   create: (game) => {
-    return new Promise((resolve) => {
-      resolve({ id: 123 });
-    });
+    return api.game.create(game);
   }
 };
