@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Level from 'functionals/Level';
 import actions from 'actions';
 import Config from 'functionals/Config';
-import GetReady from 'functionals/GetReady';
 import './styles.css';
 
 class Create extends Component {
