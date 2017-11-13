@@ -1,3 +1,5 @@
-export default {
+import game from './game';
 
+export default {
+  game
 };
