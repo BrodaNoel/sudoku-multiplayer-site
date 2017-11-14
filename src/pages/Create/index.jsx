@@ -13,7 +13,7 @@ class Create extends Component {
     teams: null,
 
     nowShow: 'level',
-    loading: false
+    isLoading: false
   };
 
   constructor(props) {
@@ -44,7 +44,7 @@ class Create extends Component {
         teams: this.state.teams
       };
 
-      this.setState({ loading: true });
+      this.setState({ isLoading: true });
 
       actions.game.create(game).then((gameCreated) => {
         this.props.history.push(`/join/${gameCreated.id}`);
@@ -62,10 +62,10 @@ class Create extends Component {
   render() {
     return (
       <div className="Create">
-        { this.state.loading ? <Loading /> : null }
-        { !this.state.loading && this.state.nowShow === 'level' ? <Level onSelect={ this.onSelectLevel } /> : null }
-        { !this.state.loading && this.state.nowShow === 'config' ? <Config onSelect={ this.onSelectConfig } /> : null }
-        { !this.state.loading && this.state.nowShow === 'createTeams' ? null : null }
+        { this.state.isLoading ? <Loading /> : null }
+        { !this.state.isLoading && this.state.nowShow === 'level' ? <Level onSelect={ this.onSelectLevel } /> : null }
+        { !this.state.isLoading && this.state.nowShow === 'config' ? <Config onSelect={ this.onSelectConfig } /> : null }
+        { !this.state.isLoading && this.state.nowShow === 'createTeams' ? null : null }
       </div>
     );
   }
