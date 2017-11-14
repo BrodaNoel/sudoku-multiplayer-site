@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import Level from 'functionals/Level';
 import actions from 'actions';
+import Level from 'functionals/Level';
+import Loading from 'visuals/Loading';
 import Config from 'functionals/Config';
 import './styles.css';
 
@@ -11,7 +12,8 @@ class Create extends Component {
     config: null,
     teams: null,
 
-    nowShow: 'level'
+    nowShow: 'level',
+    loading: false
   };
 
   constructor(props) {
@@ -42,6 +44,8 @@ class Create extends Component {
         teams: this.state.teams
       };
 
+      this.setState({ loading: true });
+
       actions.game.create(game).then((gameCreated) => {
         this.props.history.push(`/join/${gameCreated.id}`);
       });
@@ -58,9 +62,10 @@ class Create extends Component {
   render() {
     return (
       <div className="Create">
-        { this.state.nowShow === 'level' ? <Level onSelect={ this.onSelectLevel } /> : null }
-        { this.state.nowShow === 'config' ? <Config onSelect={ this.onSelectConfig } /> : null }
-        { this.state.nowShow === 'createTeams' ? null : null }
+        { this.state.loading ? <Loading /> : null }
+        { !this.state.loading && this.state.nowShow === 'level' ? <Level onSelect={ this.onSelectLevel } /> : null }
+        { !this.state.loading && this.state.nowShow === 'config' ? <Config onSelect={ this.onSelectConfig } /> : null }
+        { !this.state.loading && this.state.nowShow === 'createTeams' ? null : null }
       </div>
     );
   }

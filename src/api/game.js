@@ -9,7 +9,9 @@ export default {
   create: (game) => {
     // TODO: Remove hardcode
     return new Promise(function(resolve) {
-      resolve({ id: 456 });
+      setTimeout(() => {
+        resolve({ id: 456 });
+      }, 1000);
     });
 
     return fetch(
