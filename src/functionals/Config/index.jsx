@@ -27,12 +27,12 @@ class Config extends Component {
         </div>
 
         <div>
-          <input type="checkbox" disabled="disabled" /> Show timer
+          <input type="checkbox" disabled="disabled" checked="checked" /> Show timer
         </div>
 
         <div
           className="button"
-          onClick={() => this.props.onSelect({ someConfig: true }) }>Save Config</div>
+          onClick={() => this.props.onSelect({ showTimer: true }) }>Save Config</div>
       </div>
     );
   }
