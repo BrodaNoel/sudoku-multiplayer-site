@@ -16,13 +16,19 @@ const create = (game) => {
   return api.game.create(game);
 }
 
-const isReady = () => {
-  //
+const ready = (gameId) => {
+  const playerId = window.user.data.uid;
+  return api.game.player.ready(gameId, playerId);
+}
+
+const get = (gameId) => {
+  return api.game.get(gameId);
 }
 
 export default {
   create,
+  get,
   player: {
-    isReady
+    ready
   }
 };
