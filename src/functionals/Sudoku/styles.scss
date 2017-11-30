@@ -1,8 +1,6 @@
 @import '../../vars';
 
 .Sudoku {
-  height: 100%;
-
   > * {
     display: block;
     float: left;

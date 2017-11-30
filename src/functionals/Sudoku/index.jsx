@@ -28,7 +28,6 @@ class Sudoku extends Component {
   }
 
   onChange = (i, event) => {
-    console.log('a');
     const value = event.target.value;
     const number = parseInt(value, 10);
     let newValue = '';
@@ -48,10 +47,13 @@ class Sudoku extends Component {
 
   onKeyDown = event => {
     const i = this.state.focusOn;
+    const { gameId, teamId } = this.props;
 
     if ((event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105)) {
-      const number = utils.keyMapping.map(event.keyCode);
-      // actions.game.changeValue(k);
+      let number = utils.keyMapping.map(event.keyCode);
+      number = number > 0 && number < 10 ? number: '';
+
+      this.props.onChange(i, number);
 
     } else if (event.keyCode >= 37 && event.keyCode <= 40) {
       const key = utils.keyMapping.map(event.keyCode);
@@ -78,7 +80,7 @@ class Sudoku extends Component {
       }
 
     } else {
-      // clear value
+      this.props.onChange(i, '');
     }
   }
 
@@ -119,7 +121,8 @@ class Sudoku extends Component {
 
 Sudoku.propTypes = {
   init: PropTypes.object.isRequired,
-  done: PropTypes.object.isRequired
+  done: PropTypes.object.isRequired,
+  onChange: PropTypes.func.isRequired
 }
 
 export default Sudoku;
