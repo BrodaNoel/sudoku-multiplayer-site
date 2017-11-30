@@ -19,6 +19,7 @@ class Create extends Component {
   constructor(props) {
     super(props);
 
+    // Leave it as it is just because it could contain more info in a future
     const gameTypes = {
       'alone': {},
     };
@@ -37,26 +38,22 @@ class Create extends Component {
 
   onSelectConfig = config => {
     if (this.state.type === 'alone') {
+      this.setState({
+        isLoading: true,
+        config
+      });
+
       const game = {
         type: this.state.type,
         level: this.state.level,
-        config: this.state.config,
+        config,
         teams: this.state.teams
       };
-
-      this.setState({ isLoading: true });
 
       actions.game.create(game).then((gameCreated) => {
         this.props.history.push(`/join/${gameCreated.id}`);
       });
-
-      return;
     }
-
-    this.setState({
-      config,
-      nowShow: 'createTeams'
-    });
   }
 
   render() {
@@ -66,6 +63,7 @@ class Create extends Component {
         { !this.state.isLoading && this.state.nowShow === 'level' ? <Level onSelect={ this.onSelectLevel } /> : null }
         { !this.state.isLoading && this.state.nowShow === 'config' ? <Config onSelect={ this.onSelectConfig } /> : null }
         { !this.state.isLoading && this.state.nowShow === 'createTeams' ? null : null }
+        { !this.state.isLoading && this.state.nowShow === 'share' ? null : null }
       </div>
     );
   }
