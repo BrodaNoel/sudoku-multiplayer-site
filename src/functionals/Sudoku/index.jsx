@@ -50,34 +50,49 @@ class Sudoku extends Component {
     const { gameId, teamId } = this.props;
 
     if ((event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105)) {
+      // If it's a number
+
       let number = utils.keyMapping.map(event.keyCode);
       number = number > 0 && number < 10 ? number: '';
 
       this.props.onChange(i, number);
 
     } else if (event.keyCode >= 37 && event.keyCode <= 40) {
+      // If it's a move key
+
       const key = utils.keyMapping.map(event.keyCode);
 
+      let newI = 0;
       switch (key) {
         case 'LEFT':
-          this.setFocus(i - 1);
+          newI = i - 1;
           break;
 
         case 'TOP':
-          this.setFocus(i - 9);
+          newI = i - 9;
           break;
 
         case 'RIGHT':
-          this.setFocus(i + 1);
+          newI = i + 1;
           break;
 
         case 'BOTTOM':
-          this.setFocus(i + 9);
+          newI = i + 9;
           break;
 
         default:
-          this.setFocus(0);
+          newI = 0;
       }
+
+      if (newI > 80) {
+        newI = 0;
+      }
+
+      if (newI < 0) {
+        newI = 80;
+      }
+
+      this.setFocus(newI);
 
     } else {
       this.props.onChange(i, '');
