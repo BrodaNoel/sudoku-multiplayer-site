@@ -5,17 +5,22 @@ import './styles.css';
 
 class Join extends Component {
   state = {
-    isLoading: false
+    isLoading: false,
+    gameId: this.props.match.params.gameId
   };
+
+  onReady = () => {
+    this.props.history.push(`/play/${this.state.gameId}`);
+  }
 
   render() {
     return (
       <div className="Join">
+        { this.state.isLoading ? <Loading /> : null }
         {
-          this.state.isLoading
-            ? <Loading />
-            : <GetReady gameId={this.props.match.params.gameId} />
+          // Here gonna have the SelectTeam component
         }
+        { !this.state.isLoading ? <GetReady gameId={this.state.gameId} onReady={this.onReady} /> : null }
       </div>
     );
   }
