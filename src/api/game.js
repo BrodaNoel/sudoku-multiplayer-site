@@ -54,7 +54,20 @@ const get = (gameId) => {
         config: {
           showTimer: true
         },
-        startAt: Date.now()
+        won: null,
+        initial: {
+          0: 1,
+          1: 2
+        },
+        teams: {
+          0: {
+            solved: {
+              79: 8,
+              80: 9
+            }
+          }
+        },
+        startedAt: Date.now()
       };
 
       resolve(game);
@@ -71,9 +84,30 @@ const get = (gameId) => {
   ).then((r) => r.json());
 }
 
+const change = (gameId, teamId, i, newValue) => {
+  // TODO: Remove hardcode
+  return new Promise(function(resolve) {
+    setTimeout(() => {
+      resolve({ changed: true });
+    }, 1000);
+  });
+
+  return fetch(
+    `${config.baseUrl}/api/game/solved/change`,
+    {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({ gameId, teamId, i, newValue })
+    }
+  ).then((r) => r.json());
+}
+
 export default {
   create,
   get,
+  solved: {
+    change
+  },
   player: {
     ready
   }

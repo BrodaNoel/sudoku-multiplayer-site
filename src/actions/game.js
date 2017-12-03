@@ -25,8 +25,15 @@ const get = (gameId) => {
   return api.game.get(gameId);
 }
 
+const change = (gameId, teamId, i, newValue) => {
+  return api.game.solved.change(gameId, teamId, i, newValue);
+}
+
 export default {
   create,
+  solved: {
+    change
+  },
   get,
   player: {
     ready
