@@ -5,8 +5,8 @@ import './styles.css';
 
 class Sudoku extends Component {
   state = {
-    init: {},
-    done: {},
+    initial: {},
+    solved: {},
 
     focusOn: 0
   }
@@ -14,9 +14,9 @@ class Sudoku extends Component {
   constructor(props) {
     super(props);
 
-    // Set Inits
-    this.state.init = props.init;
-    this.state.done = props.done;
+    // Setup
+    this.state.initial = props.initial;
+    this.state.solved = props.solved;
   }
 
   componentDidMount() {
@@ -38,16 +38,15 @@ class Sudoku extends Component {
 
     const newDone = Object.assign(
       {},
-      this.state.done,
+      this.state.solved,
       { [i]: newValue }
     );
 
-    this.setState({ done: newDone });
+    this.setState({ solved: newDone });
   }
 
   onKeyDown = event => {
     const i = this.state.focusOn;
-    const { gameId, teamId } = this.props;
 
     if ((event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105)) {
       // If it's a number
@@ -55,7 +54,7 @@ class Sudoku extends Component {
       let number = utils.keyMapping.map(event.keyCode);
       number = number > 0 && number < 10 ? number: '';
 
-      this.props.onChange(i, number);
+      this.changeValue(i, number);
 
     } else if (event.keyCode >= 37 && event.keyCode <= 40) {
       // If it's a move key
@@ -94,20 +93,29 @@ class Sudoku extends Component {
 
       this.setFocus(newI);
 
-    } else {
-      this.props.onChange(i, '');
+    } else if (event.keyCode === 8 || event.keyCode === 46) {
+      // It's a "delete" key
+      this.changeValue(i, '');
     }
+  }
+
+  changeValue = (i, value) => {
+    this.setState({
+      solved: Object.assign({}, this.state.solved, { [i]: value })
+    });
+
+    this.props.onChange(i, value);
   }
 
   setFocus = (i) => {
     this.setState({ focusOn: i });
   }
 
-  getCellClass = i => {
+  getCellClass = (i) => {
     let classes = [];
 
-    if (this.state.init[i]) {
-      classes.push('init');
+    if (this.state.initial[i]) {
+      classes.push('initial');
     }
 
     if (this.state.focusOn === i) {
@@ -126,7 +134,7 @@ class Sudoku extends Component {
               key={i}
               className={ this.getCellClass(i) }
               onClick={ () => this.setFocus(i) }
-              >{this.state.init[i] || this.state.done[i] || ''}</div>
+              >{this.state.initial[i] || this.state.solved[i] || ''}</div>
           )
         }
       </div>
@@ -135,8 +143,8 @@ class Sudoku extends Component {
 }
 
 Sudoku.propTypes = {
-  init: PropTypes.object.isRequired,
-  done: PropTypes.object.isRequired,
+  initial: PropTypes.object.isRequired,
+  solved: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired
 }
 
