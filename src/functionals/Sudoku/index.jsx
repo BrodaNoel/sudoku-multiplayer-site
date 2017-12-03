@@ -100,11 +100,13 @@ class Sudoku extends Component {
   }
 
   changeValue = (i, value) => {
-    this.setState({
-      solved: Object.assign({}, this.state.solved, { [i]: value })
-    });
+    if (this.state.solved[i] !== value) {
+      this.setState({
+        solved: Object.assign({}, this.state.solved, { [i]: value })
+      });
 
-    this.props.onChange(i, value);
+      this.props.onChange(i, value);
+    }
   }
 
   setFocus = (i) => {
