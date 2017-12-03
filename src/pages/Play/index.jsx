@@ -11,19 +11,13 @@ class Play extends Component {
     config: {
       showTimer: true
     },
-    init: {
-      0: 1,
-      12: 4
-    },
-    done: {
-      1: 9,
-      46: 8
-    },
+    initial: { },
+    solved: { },
 
     // TODO: Get this from backend
     teamId: 0,
 
-    startAt: Date.now(),
+    startedAt: Date.now(),
 
     isLoading: true
   };
@@ -37,7 +31,9 @@ class Play extends Component {
       this.setState({
         type: game.type,
         config: game.config,
-        startAt: game.startAt,
+        startedAt: game.startedAt,
+        initial: game.initial,
+        solved: game.teams[this.state.teamId].solved,
         isLoading: false
       });
     });
@@ -45,21 +41,21 @@ class Play extends Component {
 
   onChange = (i, newValue) => {
     const gameId = this.props.match.params.gameId;
-    actions.game.changeValue(gameId, this.state.teamId, i, newValue);
+    actions.game.solved.change(gameId, this.state.teamId, i, newValue);
   }
 
   render() {
     return (
       <div className="Play">
-        { !this.state.isLoading && this.state.config.showTimer ? <Timer startAt={this.state.startAt} /> : null }
+        { !this.state.isLoading && this.state.config.showTimer ? <Timer startAt={this.state.startedAt} /> : null }
 
         {
           this.state.isLoading
             ? <Loading />
             : <Sudoku
-                init={this.state.init}
+                initial={this.state.initial}
                 config={this.state.config}
-                done={this.state.done}
+                solved={this.state.solved}
                 onChange={this.onChange} />
         }
       </div>
