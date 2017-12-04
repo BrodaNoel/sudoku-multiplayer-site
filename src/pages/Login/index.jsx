@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import actions from 'actions';
 import * as firebase from 'firebase';
 import './styles.css';
 
