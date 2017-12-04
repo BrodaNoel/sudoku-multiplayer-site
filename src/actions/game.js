@@ -16,9 +16,11 @@ const create = (game) => {
   return api.game.create(game);
 }
 
-const ready = (gameId) => {
+const ready = (gameId, teamId) => {
   const playerId = window.user.data.uid;
-  return api.game.player.ready(gameId, playerId);
+  teamId = teamId ? teamId : 0;
+
+  return api.game.player.ready(gameId, teamId, playerId);
 }
 
 const get = (gameId) => {

@@ -5,5 +5,12 @@ import timeFormat from './timeFormat';
 export default {
   storage,
   keyMapping,
-  timeFormat
+  timeFormat,
+  getHeaders: () => {
+    return {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + window.user.firebaseToken
+    };
+  }
 };

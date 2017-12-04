@@ -1,3 +1,3 @@
 export default {
-  baseUrl: 'https://google.com'
+  baseUrl: 'https://us-central1-sudokumultiplayer.cloudfunctions.net'
 };
