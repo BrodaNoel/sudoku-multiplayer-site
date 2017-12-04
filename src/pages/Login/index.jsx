@@ -16,7 +16,6 @@ class Login extends Component {
         result.user.getIdToken().then(token => {
           actions.login.login({
             data: result.user,
-            credentials: result.credential,
             firebaseToken: token
           });
 

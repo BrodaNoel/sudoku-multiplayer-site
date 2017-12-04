@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import * as firebase from 'firebase';
+import actions from 'actions';
 import utils from 'utils';
 import Home from 'pages/Home';
 import Login from 'pages/Login';
@@ -24,6 +25,18 @@ class App extends Component {
       storageBucket: "sudokumultiplayer.appspot.com",
       messagingSenderId: "296284276109"
     });
+
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        user.getIdToken().then((token) => {
+          actions.login.login({
+            data: user,
+            firebaseToken: token
+          });
+        });
+      }
+    });
+
   }
 
   render() {
