@@ -43,13 +43,6 @@ const get = (gameId) => {
 }
 
 const change = (gameId, teamId, i, newValue) => {
-  // TODO: Remove hardcode
-  return new Promise(function(resolve) {
-    setTimeout(() => {
-      resolve({ changed: true });
-    }, 1000);
-  });
-
   return fetch(
     `${config.baseUrl}/api/game/solved/change`,
     {
