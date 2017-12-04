@@ -9,6 +9,20 @@ class Home extends Component {
     isLogged: !!window.user.firebaseToken
   };
 
+  removeWatcher = () => {};
+
+  constructor(props) {
+    super(props);
+
+    this.removeWatcher = firebase.auth().onAuthStateChanged((user) => {
+      this.setState({ isLogged: !!user });
+    });
+  }
+
+  componentWillUnmount() {
+    this.removeWatcher();
+  }
+
   logout = () => {
     firebase.auth().signOut()
       .then(actions.login.logout)

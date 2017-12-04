@@ -34,6 +34,8 @@ class App extends Component {
             firebaseToken: token
           });
         });
+      } else {
+        actions.login.logout();
       }
     });
 

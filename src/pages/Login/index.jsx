@@ -13,14 +13,7 @@ class Login extends Component {
 
     firebase.auth().signInWithPopup(provider)
       .then(result => {
-        result.user.getIdToken().then(token => {
-          actions.login.login({
-            data: result.user,
-            firebaseToken: token
-          });
-
-          this.props.history.push(`/`);
-        });
+        this.props.history.push(`/`);
       })
     .catch(() => {
       this.props.history.push(`/login/denied`);
