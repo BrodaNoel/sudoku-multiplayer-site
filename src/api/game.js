@@ -26,38 +26,11 @@ const ready = (gameId, teamId, playerId) => {
         headers: utils.getHeaders(),
         body: JSON.stringify({ gameId, teamId, playerId })
     }
-  ).then((r) => r.json());
+  ).then((r) => r.json())
+  .then((r) => r.data);
 }
 
 const get = (gameId) => {
-  // TODO: Remove hardcode
-  return new Promise(function(resolve) {
-    setTimeout(() => {
-      const game = {
-        type: 'alone',
-        config: {
-          showTimer: true
-        },
-        won: null,
-        initial: {
-          0: 1,
-          1: 2
-        },
-        teams: {
-          0: {
-            solved: {
-              79: 8,
-              80: 9
-            }
-          }
-        },
-        startedAt: Date.now()
-      };
-
-      resolve(game);
-    }, 1000);
-  });
-
   return fetch(
     `${config.baseUrl}/api/game/get`,
     {
@@ -65,7 +38,8 @@ const get = (gameId) => {
         headers: utils.getHeaders(),
         body: JSON.stringify({ gameId })
     }
-  ).then((r) => r.json());
+  ).then((r) => r.json())
+  .then((r) => r.data.game);
 }
 
 const change = (gameId, teamId, i, newValue) => {
