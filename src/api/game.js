@@ -14,7 +14,7 @@ const create = (game) => {
         headers: utils.getHeaders(),
         body: JSON.stringify({ game })
     }
-  ).then((r) => r.json())
+  ).then(utils.fetch.process)
   .then((r) => r.data.game);
 }
 
@@ -26,7 +26,7 @@ const ready = (gameId, teamId, playerId) => {
         headers: utils.getHeaders(),
         body: JSON.stringify({ gameId, teamId, playerId })
     }
-  ).then((r) => r.json())
+  ).then(utils.fetch.process)
   .then((r) => r.data);
 }
 
@@ -38,7 +38,7 @@ const get = (gameId) => {
         headers: utils.getHeaders(),
         body: JSON.stringify({ gameId })
     }
-  ).then((r) => r.json())
+  ).then(utils.fetch.process)
   .then((r) => r.data.game);
 }
 
@@ -50,7 +50,7 @@ const change = (gameId, teamId, i, newValue) => {
         headers: utils.getHeaders(),
         body: JSON.stringify({ gameId, teamId, i, newValue })
     }
-  ).then((r) => r.json());
+  ).then(utils.fetch.process);
 }
 
 export default {
