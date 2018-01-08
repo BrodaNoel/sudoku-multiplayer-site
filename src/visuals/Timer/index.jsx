@@ -5,7 +5,7 @@ import './styles.css';
 
 class Timer extends Component {
   state = {
-    time: 0
+    time: '00:00:00'
   };
 
   componentDidMount() {
