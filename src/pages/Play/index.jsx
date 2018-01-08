@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import actions from 'actions';
+import utils from 'utils';
 import Sudoku from 'functionals/Sudoku';
 import Loading from 'visuals/Loading';
 import Timer from 'visuals/Timer';
@@ -42,6 +43,17 @@ class Play extends Component {
   onChange = (i, newValue) => {
     const gameId = this.props.match.params.gameId;
     actions.game.solved.change(gameId, this.state.teamId, i, newValue);
+
+    this.setState(
+      {
+        solved: Object.assign({}, this.state.solved, {[i]: newValue})
+      },
+      () => {
+        const isValid = utils.sudoku.isValid(
+          Object.assign({}, this.state.initial, this.state.solved)
+        );
+      }
+    );
   }
 
   render() {
