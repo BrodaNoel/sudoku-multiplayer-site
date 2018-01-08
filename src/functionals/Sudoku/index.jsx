@@ -54,7 +54,9 @@ class Sudoku extends Component {
       let number = utils.keyMapping.map(event.keyCode);
       number = number > 0 && number < 10 ? number: '';
 
-      this.changeValue(i, number);
+      if (!this.state.initial[i]) {
+        this.changeValue(i, number);
+      }
 
     } else if (event.keyCode >= 37 && event.keyCode <= 40) {
       // If it's a move key
