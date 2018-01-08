@@ -53,12 +53,24 @@ const change = (gameId, teamId, i, newValue) => {
   ).then(utils.fetch.process);
 }
 
+const isSolved = (gameId, teamId) => {
+  return fetch(
+    `${config.baseUrl}/api/game/isSolved`,
+    {
+        method: 'POST',
+        headers: utils.getHeaders(),
+        body: JSON.stringify({ gameId, teamId })
+    }
+  ).then(utils.fetch.process);
+}
+
 export default {
   create,
   get,
   solved: {
     change
   },
+  isSolved,
   player: {
     ready
   }

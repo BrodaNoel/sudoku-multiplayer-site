@@ -31,11 +31,16 @@ const change = (gameId, teamId, i, newValue) => {
   return api.game.solved.change(gameId, teamId, i, newValue);
 }
 
+const isSolved = (gameId, teamId) => {
+  return api.game.isSolved(gameId, teamId);
+}
+
 export default {
   create,
   solved: {
     change
   },
+  isSolved,
   get,
   player: {
     ready
