@@ -14,6 +14,9 @@ class Play extends Component {
     },
     initial: { },
     solved: { },
+    isSolved: false,
+    // TODO: Return this value from backend after setting "isSolved" in true
+    solvedAt: null,
 
     // TODO: Get this from backend
     teamId: 0,
@@ -52,6 +55,11 @@ class Play extends Component {
         const isValid = utils.sudoku.isValid(
           Object.assign({}, this.state.initial, this.state.solved)
         );
+
+        if (isValid) {
+          actions.game.isSolved(true);
+          this.setState({ isSolved: true });
+        }
       }
     );
   }
