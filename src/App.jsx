@@ -8,6 +8,7 @@ import Login from 'pages/Login';
 import Create from 'pages/Create';
 import Join from 'pages/Join';
 import Play from 'pages/Play';
+import Done from 'pages/Done';
 import LoginDenied from 'pages/LoginDenied';
 import './App.css';
 
@@ -54,6 +55,8 @@ class App extends Component {
 
           <Route path='/join/:gameId' component={ Join } />
           <Route path='/play/:gameId' component={ Play } />
+
+          <Route path='/done/:gameId' component={ Done } />
         </Switch>
       </div>
     );
