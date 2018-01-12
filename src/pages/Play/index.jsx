@@ -58,7 +58,7 @@ class Play extends Component {
         if (isValid) {
           actions.game.isSolved(gameId, this.state.teamId)
           .then((r) => {
-            this.setState({ solvedAt: r.solvedAt });
+            this.props.history.push(`/done/${gameId}`);
           });
         }
       }
