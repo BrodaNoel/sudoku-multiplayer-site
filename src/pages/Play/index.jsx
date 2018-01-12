@@ -14,15 +14,13 @@ class Play extends Component {
     },
     initial: { },
     solved: { },
-    isSolved: false,
-    // TODO: Return this value from backend after setting "isSolved" in true
-    solvedAt: null,
 
     // TODO: Get this from backend
     teamId: 0,
 
     startedAt: Date.now(),
 
+    // Local vars
     isLoading: true
   };
 
@@ -38,6 +36,7 @@ class Play extends Component {
         startedAt: game.startedAt,
         initial: game.initial,
         solved: game.teams[this.state.teamId].solved,
+        solvedAt: game.teams[this.state.teamId].solvedAt,
         isLoading: false
       });
     });
@@ -57,8 +56,10 @@ class Play extends Component {
         );
 
         if (isValid) {
-          actions.game.isSolved(gameId, this.state.teamId);
-          this.setState({ isSolved: true });
+          actions.game.isSolved(gameId, this.state.teamId)
+          .then((r) => {
+            this.setState({ solvedAt: r.solvedAt });
+          });
         }
       }
     );
@@ -67,7 +68,10 @@ class Play extends Component {
   render() {
     return (
       <div className="Play">
-        { !this.state.isLoading && this.state.config.showTimer ? <Timer startAt={this.state.startedAt} /> : null }
+        {
+          !this.state.isLoading && this.state.config.showTimer &&
+            <Timer startAt={this.state.startedAt} finishAt={this.state.solvedAt} />
+        }
 
         {
           this.state.isLoading

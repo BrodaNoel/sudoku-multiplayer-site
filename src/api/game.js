@@ -61,7 +61,8 @@ const isSolved = (gameId, teamId) => {
         headers: utils.getHeaders(),
         body: JSON.stringify({ gameId, teamId })
     }
-  ).then(utils.fetch.process);
+  ).then(utils.fetch.process)
+  .then((r) => r.data);
 }
 
 export default {
