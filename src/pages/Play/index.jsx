@@ -57,7 +57,7 @@ class Play extends Component {
         );
 
         if (isValid) {
-          actions.game.isSolved(true);
+          actions.game.isSolved(gameId, this.state.teamId);
           this.setState({ isSolved: true });
         }
       }
