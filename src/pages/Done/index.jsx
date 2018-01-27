@@ -30,9 +30,9 @@ class Done extends Component {
   render() {
     return (
       <div className="Done">
-        <h2>Game over!</h2>
+        <h2 className="title">Game over!</h2>
 
-        <div>
+        <div className="timeInfo">
           <h3>This took...</h3>
           {
             this.state.isLoading
